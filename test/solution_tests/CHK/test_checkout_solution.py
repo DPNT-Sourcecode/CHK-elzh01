@@ -3,7 +3,7 @@ import pytest
 from lib.solutions.CHK.checkout_solution import CheckoutSolution
 
 class TestCheckout:
-    def test_checkout_singe(self):
+    def test_checkout_single(self):
         checkout = CheckoutSolution()
         assert checkout.checkout("AB") == 80
         assert checkout.checkout("ABCD") == 115
@@ -11,8 +11,10 @@ class TestCheckout:
 
     def test_checkout_multiple(self):
         checkout = CheckoutSolution()
-        assert checkout.checkout("AAAAAA") == 260
-        assert checkout.checkout("AAAAA") == 230
+        assert checkout.checkout("AAAAAA") == 250
+        assert checkout.checkout("AAAAA") == 200
+        assert checkout.checkout("AAAA") == 180
+        assert checkout.checkout("AAA") == 130
         assert checkout.checkout("BB") == 45
         assert checkout.checkout("BBB") == 75
         assert checkout.checkout("BBBB") == 90

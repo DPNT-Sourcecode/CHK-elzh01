@@ -33,4 +33,5 @@ class TestRepository:
     def test_freebee_amount(self):
         repository = Repository(TestRepository.TEST_PRICE_DATA, TestRepository.TEST_FREEBEE_DATA)
         assert repository.check_freebies('A', {'B': 5}) == 0
-        assert repository.check_freebies('C', {'B': 5}) == 0
+        assert repository.check_freebies('C', {'B': 5}) == 2
+
