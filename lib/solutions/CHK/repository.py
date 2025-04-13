@@ -5,7 +5,12 @@ class Deal:
 
 
 class Repository:
-    DEFAULTS = None
+    DEFAULTS = {
+        "A": {1: 50, 3: 130},
+        "B": {1: 30, 2: 45},
+        "C": {1: 20},
+        "D": {1: 15},
+    }
 
     def __init__(self, data: dict[str, dict[int, int]]):
         self.data: dict[str, list[Deal]] = {}
@@ -29,3 +34,4 @@ class Repository:
                 amount -= best.amount
                 price += best.price
         return price
+
