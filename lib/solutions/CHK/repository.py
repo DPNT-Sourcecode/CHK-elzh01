@@ -34,4 +34,3 @@ class Repository:
                 amount -= best.amount
                 price += best.price
         return price
-

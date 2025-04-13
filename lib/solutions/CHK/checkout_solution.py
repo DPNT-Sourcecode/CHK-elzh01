@@ -19,5 +19,3 @@ class CheckoutSolution:
             return -1
         return price
 
-
-
