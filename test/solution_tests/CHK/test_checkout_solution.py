@@ -38,6 +38,8 @@ class TestCheckout:
         checkout = CheckoutSolution()
         assert checkout.checkout("ABCZ!") == -1
 
-    def test_err(self):
+    def test_group_items(self):
         checkout = CheckoutSolution()
-        assert checkout.checkout("U") == 40
+        assert checkout.checkout("ST") == 50
+        assert checkout.checkout("STZ") == 45
+        assert checkout.checkout("STZZ") == 65

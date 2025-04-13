@@ -5,11 +5,12 @@ class Deal:
 
 class Group:
     def __init__(self, deals: list[Deal], members: dict[str, int]):
-        pairs = sorted([(key, members[key]) for key in members], key = lambda pair: pair[1]).map
+        pairs = sorted([(key, members[key]) for key in members], key = lambda pair: pair[1], reverse=True)
+        self.members = [pair[0] for pair in pairs]
         self.deals = deals
-        self.members = members
 
     def consume(self, sku_amounts: dict[str, int]) -> dict[str, int]:
+        pass
 
 
 
@@ -91,6 +92,3 @@ class Repository:
                         amount -= self.freebie_data[sku][required_sku]
                         freebies += 1
         return freebies
-
-
-
