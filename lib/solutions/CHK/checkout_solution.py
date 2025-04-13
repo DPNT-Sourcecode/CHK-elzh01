@@ -5,7 +5,7 @@ class CheckoutSolution:
 
     # skus = unicode string
     def checkout(self, skus: str) -> int:
-        repository = Repository(Repository.PRICE_DEFAULTS, Repository.FREEBIE_DEFAULTS)
+        repository = Repository(Repository.PRICE_DEFAULTS, Repository.FREEBIE_DEFAULTS, Repository.GROUPS)
         sku_amounts: dict[str, int] = {}
         sku_freebies: dict[str, int] = {}
         sku_groups: dict[str, int] = {}
@@ -31,5 +31,4 @@ class CheckoutSolution:
         except:
             return -1
         return price
-
 

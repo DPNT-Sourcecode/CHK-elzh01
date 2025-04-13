@@ -80,13 +80,13 @@ class Repository:
         "Y": {1: 10},
         "Z": {1: 50},
     }
-    GROUPS = { '#1', {
+    GROUPS = [{
         "members": ['S', 'T', 'X', 'Y', 'Z'],
         "amount": 3,
         "price": 45,
-    }}
+    }]
 
-    def __init__(self, price_data: dict[str, dict[int, int]], freebie_data: dict[str, dict[str, int]], group_data: dict[str, dict]):
+    def __init__(self, price_data: dict[str, dict[int, int]], freebie_data: dict[str, dict[str, int]], group_data: list[dict]):
         self.data: dict[str, list[Deal]] = {}
         self.freebie_data: dict[str, dict[str, int]] = freebie_data
         for sku in price_data:
@@ -98,7 +98,7 @@ class Repository:
             if not len(self.data[sku]) or self.data[sku][0].amount != 1:
                 raise ValueError("No deal for single item of sku: {}".format(sku))
 
-        self.groups = [Group(group_data[group_name]["amount"], group_data[group_name]["amount"], group_data[group_name]["price"]) for group_name in group_data]
+        self.groups = [Group(group["amount"], group["amount"], group["price"]) for group in group_data]
 
 
     def price_for(self, sku: str, amount: int) -> int:
