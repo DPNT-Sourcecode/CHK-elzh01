@@ -37,4 +37,3 @@ class TestCheckout:
     def test_checkout_garbage(self):
         checkout = CheckoutSolution()
         assert checkout.checkout("ABZC") == -1
-
