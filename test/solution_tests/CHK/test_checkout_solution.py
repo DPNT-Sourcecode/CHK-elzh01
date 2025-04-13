@@ -25,6 +25,15 @@ class TestCheckout:
         assert checkout.checkout("EEBB") == 110
         assert checkout.checkout("EEBBB") == 125
 
+    def test_checkout_freebie_self(self):
+        checkout = CheckoutSolution()
+        assert checkout.checkout("F") == 80
+        assert checkout.checkout("FF") == 110
+        assert checkout.checkout("FFF") == 125
+        assert checkout.checkout("FFFF") == 125
+        assert checkout.checkout("FFFFF") == 125
+        assert checkout.checkout("FFFFFF") == 125
+
     def test_checkout_garbage(self):
         checkout = CheckoutSolution()
         assert checkout.checkout("ABZC") == -1
