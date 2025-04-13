@@ -37,3 +37,7 @@ class TestCheckout:
     def test_checkout_garbage(self):
         checkout = CheckoutSolution()
         assert checkout.checkout("ABCZ!") == -1
+
+    def test_err(self):
+        checkout = CheckoutSolution()
+        assert checkout.checkout("U") == 40
