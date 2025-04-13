@@ -1,4 +1,4 @@
-from lib.solutions.CHK.repository import Repository
+from solutions.CHK.repository import Repository
 
 
 class CheckoutSolution:
@@ -18,5 +18,6 @@ class CheckoutSolution:
         except:
             return -1
         return price
+
 
 
