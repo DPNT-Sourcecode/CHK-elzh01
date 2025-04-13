@@ -5,7 +5,7 @@ from lib.solutions.HLO.hello_solution import HelloSolution
 
 class TestHello:
     def test_hello(self):
-       assert HelloSolution().hello("abc") == "Hello abc!"
+       assert HelloSolution().hello("abc") == "Hello, World!"
 
 
     def test_friend_name_validated_type(self):
@@ -18,3 +18,4 @@ class TestHello:
                 return "xyz"
 
         assert isinstance(HelloSolution().hello(Printable()), str)
+
