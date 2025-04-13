@@ -34,8 +34,3 @@ class TestSum:
         with pytest.raises(ValueError):
             assert SumSolution().compute(1, 101) == 3
 
-
-
-
-
-
