@@ -98,7 +98,14 @@ class Repository:
             if not len(self.data[sku]) or self.data[sku][0].amount != 1:
                 raise ValueError("No deal for single item of sku: {}".format(sku))
 
-        self.groups = [Group(group["amount"], group["amount"], group["price"]) for group in group_data]
+        self.groups = [Group(group["amount"], self._augment_group_members(group["members"]), group["price"]) for group in group_data]
+
+    def _augment_group_members(self, members: list[str]):
+        augmented_members = {}
+        for member in members:
+            augmented_members[member] = self.data[member][0].price
+        return augmented_members
+
 
 
     def price_for(self, sku: str, amount: int) -> int:
