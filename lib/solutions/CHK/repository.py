@@ -6,7 +6,7 @@ class Deal:
 
 class Repository:
     FREEBIE_DEFAULTS = {
-        "E": {"B": 2}
+        "B": {"E": 2}
     }
     PRICE_DEFAULTS = {
         "A": {1: 50, 3: 130, 5: 200},
@@ -43,10 +43,10 @@ class Repository:
     def check_freebies(self, sku: str, sku_amounts: dict[str, int]) -> int:
         freebies = 0
         if sku in self.freebie_data:
-            for required_sku in self.freebie_data:
+            for required_sku in self.freebie_data[sku]:
                 if required_sku in sku_amounts:
                     amount = sku_amounts[required_sku]
-                    while amount >= self.freebie_data[required_sku][sku]:
-                        amount -= self.freebie_data[required_sku][sku]
+                    while amount >= self.freebie_data[sku][required_sku]:
+                        amount -= self.freebie_data[sku][required_sku]
                         freebies += 1
         return freebies
