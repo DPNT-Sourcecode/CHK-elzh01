@@ -4,14 +4,44 @@ class Deal:
         self.price = price
 
 class Group:
-    def __init__(self, deals: list[Deal], members: dict[str, int]):
+    def __init__(self, deal_amount: int, members: dict[str, int], price: int):
         pairs = sorted([(key, members[key]) for key in members], key = lambda pair: pair[1], reverse=True)
         self.members = [pair[0] for pair in pairs]
-        self.deals = deals
+        self.deal_amount = deal_amount
+        self.price = price
 
-    def consume(self, sku_amounts: dict[str, int]) -> dict[str, int]:
-        pass
+    def consume(self, sku_amounts: dict[str, int]) -> (dict[str, int], int):
+        consumed = {}
+        consumed_deals = 0
+        maybe_consumed = {}
+        maybe_amount = 0
+        for group_sku in self.members:
+            if not group_sku in maybe_consumed:
+                maybe_consumed[group_sku] = 0
+            if group_sku in sku_amounts:
+                amount = sku_amounts[group_sku]
+                if amount + maybe_amount < self.deal_amount:
+                    maybe_consumed[group_sku] += amount
+                    maybe_amount += amount
+                else:
+                    missing_amount = self.deal_amount - maybe_amount
+                    maybe_consumed[group_sku] = missing_amount
+                    self._consume_maybe(consumed, maybe_consumed)
+                    consumed_deals += 1
 
+                    maybe_amount = amount - missing_amount
+                    while maybe_amount >= self.deal_amount:
+                        maybe_amount -= self.deal_amount
+                        consumed[group_sku] += self.deal_amount
+                        consumed_deals += 1
+                    maybe_consumed[group_sku] = maybe_amount
+        return consumed, consumed_deals
+
+    def _consume_maybe(self, consumed, maybe_consumed):
+        for maybe_sku in maybe_consumed:
+            if not maybe_sku in consumed:
+                consumed[maybe_sku] += maybe_consumed[maybe_sku]
+                maybe_consumed[maybe_sku] = 0
 
 
 class Repository:
@@ -50,15 +80,13 @@ class Repository:
         "Y": {1: 10},
         "Z": {1: 50},
     }
-    GROUPS = {
-        "#1": {
-            "members": ['S', 'T', 'X', 'Y', 'Z'],
-            "amount": 3,
-            "price": 45
-        }
-    }
+    GROUPS = { '#1', {
+        "members": ['S', 'T', 'X', 'Y', 'Z'],
+        "amount": 3,
+        "price": 45,
+    }}
 
-    def __init__(self, price_data: dict[str, dict[int, int]], freebie_data: dict[str, dict[str, int]]):
+    def __init__(self, price_data: dict[str, dict[int, int]], freebie_data: dict[str, dict[str, int]], group_data: dict[str, dict]):
         self.data: dict[str, list[Deal]] = {}
         self.freebie_data: dict[str, dict[str, int]] = freebie_data
         for sku in price_data:
@@ -69,6 +97,9 @@ class Repository:
 
             if not len(self.data[sku]) or self.data[sku][0].amount != 1:
                 raise ValueError("No deal for single item of sku: {}".format(sku))
+
+        self.groups = [Group(group_data[group_name]["amount"], group_data[group_name]["amount"], group_data[group_name]["price"]) for group_name in group_data]
+
 
     def price_for(self, sku: str, amount: int) -> int:
         if sku not in self.data:
