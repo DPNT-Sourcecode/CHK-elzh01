@@ -18,5 +18,3 @@ class TestHello:
                 return "xyz"
 
         assert isinstance(HelloSolution().hello(Printable()), str)
-
-
