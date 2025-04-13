@@ -15,4 +15,8 @@ class TestCheckout:
         assert checkout.checkout("AAAAA") == 230
         assert checkout.checkout("BB") == 45
         assert checkout.checkout("BBB") == 75
-        assert checkout.checkout("BBB") == 90
+        assert checkout.checkout("BBBB") == 90
+
+    def test_checkout_garbage(self):
+        checkout = CheckoutSolution()
+        assert checkout.checkout("ABZC") == -1
