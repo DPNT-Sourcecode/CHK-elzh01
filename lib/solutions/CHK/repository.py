@@ -6,10 +6,11 @@ class Deal:
 
 class Repository:
     DEFAULTS = {
-        "A": {1: 50, 3: 130},
+        "A": {1: 50, 3: 130, 5: 200},
         "B": {1: 30, 2: 45},
         "C": {1: 20},
         "D": {1: 15},
+        "E": {1: 40},
     }
 
     def __init__(self, data: dict[str, dict[int, int]]):
@@ -34,3 +35,4 @@ class Repository:
                 amount -= best.amount
                 price += best.price
         return price
+
