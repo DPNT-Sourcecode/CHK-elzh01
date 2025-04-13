@@ -3,6 +3,14 @@ class Deal:
         self.amount = amount
         self.price = price
 
+class Group:
+    def __init__(self, deals: list[Deal], members: dict[str, int]):
+        self.deals = deals
+        self.members = members
+
+    def consume(self, sku_amounts: dict[str, int]) -> dict[str, int]:
+
+
 
 class Repository:
     FREEBIE_DEFAULTS = {
@@ -40,9 +48,13 @@ class Repository:
         "Y": {1: 10},
         "Z": {1: 50},
     }
-    GROUPS = [
-        ['S', 'T', 'X', 'Y', 'Z']
-    ]
+    GROUPS = {
+        "#1": {
+            "members": ['S', 'T', 'X', 'Y', 'Z'],
+            "amount": 3,
+            "price": 45
+        }
+    }
 
     def __init__(self, price_data: dict[str, dict[int, int]], freebie_data: dict[str, dict[str, int]]):
         self.data: dict[str, list[Deal]] = {}
@@ -78,4 +90,5 @@ class Repository:
                         amount -= self.freebie_data[sku][required_sku]
                         freebies += 1
         return freebies
+
 
