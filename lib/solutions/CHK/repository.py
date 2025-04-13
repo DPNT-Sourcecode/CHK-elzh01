@@ -5,7 +5,10 @@ class Deal:
 
 
 class Repository:
-    DEFAULTS = {
+    FREEBIE_DEFAULTS = {
+        "E": {"B", 2}
+    }
+    PRICE_DEFAULTS = {
         "A": {1: 50, 3: 130, 5: 200},
         "B": {1: 30, 2: 45},
         "C": {1: 20},
@@ -13,12 +16,13 @@ class Repository:
         "E": {1: 40},
     }
 
-    def __init__(self, data: dict[str, dict[int, int]]):
+    def __init__(self, price_data: dict[str, dict[int, int]], freebie_data: dict[str, dict[str, int]]):
         self.data: dict[str, list[Deal]] = {}
-        for sku in data:
+        self.freebie_data: dict[str, dict[str, int]] = freebie_data
+        for sku in price_data:
             sku_data = []
-            for amount in data[sku]:
-                sku_data.append(Deal(amount, data[sku][amount]))
+            for amount in price_data[sku]:
+                sku_data.append(Deal(amount, price_data[sku][amount]))
             self.data[sku] = sorted(sku_data, key=lambda deal: deal.amount)
 
             if not len(self.data[sku]) or self.data[sku][0].amount != 1:
@@ -36,3 +40,13 @@ class Repository:
                 price += best.price
         return price
 
+    def check_freebies(self, sku: str, sku_amounts: dict[str, int]) -> int:
+        freebies = 0
+        if sku in self.freebie_data:
+            for required_sku in self.freebie_data:
+                if required_sku in sku_amounts:
+                    amount = sku_amounts[required_sku]
+                    while amount >= self.freebie_data[sku][required_sku]:
+                        amount -= self.freebie_data[sku][required_sku]
+                        freebies += 1
+        return freebies
