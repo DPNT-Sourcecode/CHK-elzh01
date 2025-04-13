@@ -22,6 +22,8 @@ class CheckoutSolution:
             sku_group, deals = group.consume(sku_amounts)
             price += deals * group.price
             for consumed_sku in sku_group:
+                if not consumed_sku in sku_groups:
+                    sku_groups[consumed_sku] = 0
                 sku_groups[consumed_sku] += sku_group[consumed_sku]
 
         try:
@@ -30,5 +32,6 @@ class CheckoutSolution:
         except:
             return -1
         return price
+
 
 
