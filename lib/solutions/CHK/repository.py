@@ -8,9 +8,9 @@ class Repository:
     FREEBIE_DEFAULTS = {
         "B": {"E": 2},
         "F": {"F": 3},
-        "M": {"N", 3},
-        "Q": {"R", 3},
-        "U": {"U", 4},
+        "M": {"N": 3},
+        "Q": {"R": 3},
+        "U": {"U": 4},
     }
     PRICE_DEFAULTS = {
         "A": {1: 50, 3: 130, 5: 200},
