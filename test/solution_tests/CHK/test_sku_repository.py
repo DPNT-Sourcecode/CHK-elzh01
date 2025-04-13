@@ -5,7 +5,7 @@ from lib.solutions.CHK.repository import Repository
 
 
 class TestRepository:
-    TEST_DATA: dict[str, list[Deal]] = {'A': [Deal(3, 5), Deal(1, 2)], 'B': [Deal(1, 6)]}
+    TEST_DATA = {'A': {1: 2, 3: 5}, 'B': {1: 6}}
 
     def test_data_validation_no_deals(self):
         with pytest.raises(ValueError):
@@ -29,5 +29,6 @@ class TestRepository:
         repository = Repository(TestRepository.TEST_DATA)
         with pytest.raises(ValueError):
             assert repository.price_for('C', 4) == 9
+
 
 

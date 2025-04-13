@@ -9,7 +9,8 @@ class Repository:
 
     def __init__(self, data: dict[str, list[Deal]]):
         self.data = data
-        for sku, deals in data:
+        for sku in data:
+            deals = data[sku]
             if not len(deals) or deals[0].amount != 1:
                 raise ValueError("No deal for single item of sku: {}".format(sku))
 
@@ -24,5 +25,6 @@ class Repository:
                 amount -= best.amount
                 price += best.price
         return price
+
 
 
