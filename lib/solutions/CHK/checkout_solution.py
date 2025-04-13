@@ -5,4 +5,7 @@ class CheckoutSolution:
 
     # skus = unicode string
     def checkout(self, skus: str) -> int:
-        CheckoutSolution(Repository())
+        repository = Repository(Repository.DEFAULTS)
+        sku_amounts = {}
+        for sku in 
+
