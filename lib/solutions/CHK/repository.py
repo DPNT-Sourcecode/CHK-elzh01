@@ -23,7 +23,7 @@ class Repository:
         "H": {1: 10, 5: 45, 10: 80},
         "I": {1: 35},
         "J": {1: 60},
-        "K": {1: 80, 2: 150},
+        "K": {1: 70, 2: 120},
         "L": {1: 90},
         "M": {1: 15},
         "N": {1: 40},
@@ -40,6 +40,9 @@ class Repository:
         "Y": {1: 10},
         "Z": {1: 50},
     }
+    GROUPS = [
+        ['S', 'T', 'X', 'Y', 'Z']
+    ]
 
     def __init__(self, price_data: dict[str, dict[int, int]], freebie_data: dict[str, dict[str, int]]):
         self.data: dict[str, list[Deal]] = {}
@@ -75,3 +78,4 @@ class Repository:
                         amount -= self.freebie_data[sku][required_sku]
                         freebies += 1
         return freebies
+
