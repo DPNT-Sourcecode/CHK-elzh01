@@ -6,7 +6,8 @@ class Deal:
 
 class Repository:
     FREEBIE_DEFAULTS = {
-        "B": {"E": 2}
+        "B": {"E": 2},
+        "F": {"F": 3},
     }
     PRICE_DEFAULTS = {
         "A": {1: 50, 3: 130, 5: 200},
@@ -14,6 +15,7 @@ class Repository:
         "C": {1: 20},
         "D": {1: 15},
         "E": {1: 40},
+        "F": {1: 10}
     }
 
     def __init__(self, price_data: dict[str, dict[int, int]], freebie_data: dict[str, dict[str, int]]):

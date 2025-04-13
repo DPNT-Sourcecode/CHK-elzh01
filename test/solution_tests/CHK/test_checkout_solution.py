@@ -27,13 +27,14 @@ class TestCheckout:
 
     def test_checkout_freebie_self(self):
         checkout = CheckoutSolution()
-        assert checkout.checkout("F") == 80
-        assert checkout.checkout("FF") == 110
-        assert checkout.checkout("FFF") == 125
-        assert checkout.checkout("FFFF") == 125
-        assert checkout.checkout("FFFFF") == 125
-        assert checkout.checkout("FFFFFF") == 125
+        assert checkout.checkout("F") == 10
+        assert checkout.checkout("FF") == 20
+        assert checkout.checkout("FFF") == 20
+        assert checkout.checkout("FFFF") == 30
+        assert checkout.checkout("FFFFF") == 40
+        assert checkout.checkout("FFFFFF") == 40
 
     def test_checkout_garbage(self):
         checkout = CheckoutSolution()
         assert checkout.checkout("ABZC") == -1
+
