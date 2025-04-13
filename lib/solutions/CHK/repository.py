@@ -41,9 +41,8 @@ class Group:
 
     def _consume_maybe(self, consumed, maybe_consumed):
         for maybe_sku in maybe_consumed:
-            if not maybe_sku in consumed:
-                consumed[maybe_sku] += maybe_consumed[maybe_sku]
-                maybe_consumed[maybe_sku] = 0
+            consumed[maybe_sku] += maybe_consumed[maybe_sku]
+            maybe_consumed[maybe_sku] = 0
 
 
 class Repository:

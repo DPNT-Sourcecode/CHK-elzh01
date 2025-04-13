@@ -43,3 +43,4 @@ class TestCheckout:
         assert checkout.checkout("ST") == 50
         assert checkout.checkout("STZ") == 45
         assert checkout.checkout("STZZ") == 65
+        assert checkout.checkout("SATZCZ") == 65 + 50 + 20
