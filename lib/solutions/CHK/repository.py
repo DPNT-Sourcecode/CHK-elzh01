@@ -72,14 +72,14 @@ class Repository:
         "P": {1: 50, 5: 200},
         "Q": {1: 30, 3: 80},
         "R": {1: 50},
-        "S": {1: 30},
+        "S": {1: 20},
         "T": {1: 20},
         "U": {1: 40},
         "V": {1: 50, 2: 90, 3: 130},
         "W": {1: 20},
-        "X": {1: 90},
-        "Y": {1: 10},
-        "Z": {1: 50},
+        "X": {1: 17},
+        "Y": {1: 20},
+        "Z": {1: 21},
     }
     GROUPS = [{
         "members": ['S', 'T', 'X', 'Y', 'Z'],
@@ -131,6 +131,7 @@ class Repository:
                         amount -= self.freebie_data[sku][required_sku]
                         freebies += 1
         return freebies
+
 
 
 
