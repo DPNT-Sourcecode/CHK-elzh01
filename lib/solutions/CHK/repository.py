@@ -18,6 +18,8 @@ class Group:
         for group_sku in self.members:
             if not group_sku in maybe_consumed:
                 maybe_consumed[group_sku] = 0
+            if not group_sku in consumed:
+                consumed[group_sku] = 0
             if group_sku in sku_amounts:
                 amount = sku_amounts[group_sku]
                 if amount + maybe_amount < self.deal_amount:
@@ -130,3 +132,4 @@ class Repository:
                         amount -= self.freebie_data[sku][required_sku]
                         freebies += 1
         return freebies
+
