@@ -26,6 +26,7 @@ class Group:
                     maybe_consumed[group_sku] += amount
                     maybe_amount += amount
                 else:
+                    maybe_amount +=
                     missing_amount = self.deal_amount - maybe_amount
                     maybe_consumed[group_sku] = missing_amount
                     self._consume_maybe(consumed, maybe_consumed)
@@ -132,4 +133,5 @@ class Repository:
                         amount -= self.freebie_data[sku][required_sku]
                         freebies += 1
         return freebies
+
 
