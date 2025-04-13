@@ -12,6 +12,7 @@ class TestHello:
         with pytest.raises(TypeError):
             assert HelloSolution().hello(123)
 
+
     def test_friend_name_validated_type_allow_printable(self):
         class Printable:
             def __str__(self):
