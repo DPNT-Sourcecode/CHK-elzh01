@@ -1,3 +1,5 @@
+import pytest
+
 from lib.solutions.SUM.sum_solution import SumSolution
 
 
@@ -6,7 +8,13 @@ class TestSum:
         assert SumSolution().compute(1, 2) == 3
 
     def test_x_validated_type(self):
-        assert SumSolution().compute("1", 2) == 3
+        with pytest.raises(TypeError):
+            assert SumSolution().compute("1", 2) == 3
+
+    def test_x_validated_lower_bound(self):
+        with pytest.raises(TypeError):
+            assert SumSolution().compute("1", 2) == 3
+
 
 
 
