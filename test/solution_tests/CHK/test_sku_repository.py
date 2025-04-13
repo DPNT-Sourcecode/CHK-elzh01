@@ -9,11 +9,11 @@ class TestRepository:
 
     def test_data_validation_no_deals(self):
         with pytest.raises(ValueError):
-            repository = Repository({'A': []})
+            repository = Repository({'A': {}})
 
     def test_data_validation_no_deal_for_1(self):
         with pytest.raises(ValueError):
-            repository = Repository({'A': [Deal(2, 2)]})
+            repository = Repository({'A': {2: 2}})
 
     def test_single_sku(self):
         repository = Repository(TestRepository.TEST_DATA)
@@ -29,6 +29,3 @@ class TestRepository:
         repository = Repository(TestRepository.TEST_DATA)
         with pytest.raises(ValueError):
             assert repository.price_for('C', 4) == 9
-
-
-
